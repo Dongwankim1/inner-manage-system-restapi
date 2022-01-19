@@ -23,6 +23,7 @@ public class CommonDao {
 		return sqlSession.selectOne(queryId,parameterObject);
 	}
 	
+
 	public int insert(String queryId,Object parameterObject) {
 		return sqlSession.insert(queryId,parameterObject);
 	}

@@ -43,6 +43,10 @@ public class myBatisConfig {
 	
 	@Bean(name = "SessionTemplate")
 	public SqlSessionTemplate SqlSessionTemplate(@Qualifier("SqlSessionFactory") SqlSessionFactory firstSqlSessionFactory) {
+	
+		
 		return new SqlSessionTemplate(firstSqlSessionFactory);
+	
+	
 	}
 }

@@ -22,7 +22,7 @@
     		NOW(),
     		#{email},
     		#{password},
-    		'user',
+    		'ROLE_USER',
     		#{username}    	
     	)
     	
