@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.ims.usr.service.UserCustomService;
-import com.ims.usr.vo.UserVo;
+import com.ims.usr.service.MemberService;
+import com.ims.usr.vo.MemberVo;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -25,7 +25,7 @@ public class JwtTokenProvider {
 	private long tokenValidTime = 30*60*1000L;
 	
 	@Autowired
-	private UserCustomService usercustomService;
+	private MemberService memberService;
 	
 	//create jwt token
 	public String createToken(String userPk,String roles) {
@@ -42,7 +42,7 @@ public class JwtTokenProvider {
 	
 	//jwt select auth info
 	public Authentication getAuthentication(String token) {
-		//UserVo usevo = usercustomService.selectUserInfo(this)
+
 		return null;
 	}
 	

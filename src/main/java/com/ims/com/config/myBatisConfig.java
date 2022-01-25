@@ -20,8 +20,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 @Configuration
 @MapperScan(value = "com.ims",sqlSessionFactoryRef = "SqlSessionFactory")
 public class myBatisConfig {
-	@Value("${spring.datasource.mapper-locations}")
-	String mybatisPath;
+	
 	
 	@Bean(name="dataSource")
 	@ConfigurationProperties(prefix = "spring.datasource")

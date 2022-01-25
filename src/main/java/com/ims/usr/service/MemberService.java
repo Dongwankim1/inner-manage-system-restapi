@@ -8,10 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ims.com.mapper.CommonDao;
-import com.ims.usr.vo.UserVo;
+import com.ims.usr.vo.MemberVo;
 
 @Service
-public class UserCustomService {
+public class MemberService {
 
 		
 		@Autowired
@@ -23,26 +23,26 @@ public class UserCustomService {
 	
 		
 		
-		public int createUserInfo(UserVo uservo) {
+		public int createUserInfo(MemberVo memberVo) {
 			int result =0;
 			
-			Map user = selectUserInfo(uservo);
+			Map user = selectUserInfo(memberVo);
 			if(user!=null) {
 				return result = -1;
 			}
 			
-			uservo.setPassword(bcryptPasswordEncoder.encode(uservo.getPassword()));
+			memberVo.setPassword(bcryptPasswordEncoder.encode(memberVo.getPassword()));
 			
 			
-			result +=commondao.insert("UserInfoMapper.insertUserInfo", uservo);
+			result +=commondao.insert("MemberInfoMapper.insertUserInfo", memberVo);
 			
 			return result;
 			
 			
 		}
 		
-		public Map<String, String> selectUserInfo(UserVo uservo) {
+		public Map<String, String> selectUserInfo(MemberVo memberVo) {
 			
-			return commondao.selectOne("UserInfoMapper.selectUserInfo",uservo);
+			return commondao.selectOne("MemberInfoMapper.selectUserInfo",memberVo);
 		}
 }

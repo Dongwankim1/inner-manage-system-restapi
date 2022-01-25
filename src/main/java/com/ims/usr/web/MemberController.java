@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ims.com.jwt.JwtTokenProvider;
-import com.ims.usr.service.UserCustomService;
+import com.ims.usr.service.MemberService;
 
-import com.ims.usr.vo.UserVo;
+import com.ims.usr.vo.MemberVo;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class UserController {
+public class MemberController {
 	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
-	UserCustomService userCustomService;
+	MemberService userCustomService;
 	
 	@Autowired
 	JwtTokenProvider jwtTokenProvider;
@@ -38,9 +38,9 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public Map<String, String> createUser(@RequestBody UserVo uservo) {
+	public Map<String, String> createUser(@RequestBody MemberVo memberVo) {
 		
-		int result = userCustomService.createUserInfo(uservo);
+		int result = userCustomService.createUserInfo(memberVo);
 		
 		
 		Map<String,String> resultMap = new HashMap<String,String>();
@@ -58,14 +58,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@RequestBody UserVo uservo) {
-		Map<String,String> user = userCustomService.selectUserInfo(uservo);
+	public String login(@RequestBody MemberVo memberVo) {
+		Map<String,String> user = userCustomService.selectUserInfo(memberVo);
 		
 		if(user ==null) {
 			return "가입되지 않은 EMAIL 입니다.";
 		}
 		
-		if(!bCryptPasswordEncoder.matches(uservo.getPassword(), user.get("password"))) {
+		if(!bCryptPasswordEncoder.matches(memberVo.getPassword(), user.get("password"))) {
 			return "잘못된 비밀번호입니다.";
 		}
 		
