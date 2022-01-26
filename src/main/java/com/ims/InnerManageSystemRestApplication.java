@@ -10,7 +10,12 @@ import com.ims.com.security.SpringSecurityConfig;
 
 @SpringBootApplication
 public class InnerManageSystemRestApplication {
-		
+	
+	@Bean
+	public BCryptPasswordEncoder getPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	
 	
 	public static void main(String[] args) {

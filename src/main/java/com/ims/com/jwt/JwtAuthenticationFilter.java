@@ -16,8 +16,16 @@ import org.springframework.web.filter.GenericFilterBean;
 public class JwtAuthenticationFilter extends GenericFilterBean{
 	
 	@Autowired
-	JwtTokenProvider jwtTokenProvider;
+	private JwtTokenProvider jwtTokenProvider;
 	
+
+
+	public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider2) {
+		this.jwtTokenProvider = jwtTokenProvider2;
+	}
+
+
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -29,6 +37,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean{
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		}
 		// TODO Auto-generated method stub
+		chain.doFilter(request, response);
 		
 	}
 }

@@ -73,4 +73,11 @@ public class MemberController {
 		
 		
 	}
+	
+	@PostMapping("/auth")
+	public String auth(@RequestBody MemberVo memberVo) {
+		return null;
+		
+		
+	}
 }

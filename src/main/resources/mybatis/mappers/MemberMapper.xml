@@ -7,23 +7,34 @@
         select
             *
         from
-            TB_USER_INFO
+            TB_MEMBER
+        WHERE EMAIL = #{email}
+    </select>
+    
+    <select id="selectOneLoadUser" parameterType="com.ims.usr.vo.MemberVo" resultType="com.ims.usr.vo.MemberVo">
+        select
+            email,
+            role
+        from
+            TB_MEMBER
         WHERE EMAIL = #{email}
     </select>
     
     <insert id="insertUserInfo" parameterType="com.ims.usr.vo.MemberVo" >
-    	INSERT INTO TB_USER_INFO(
-    		createDate, 
+    	INSERT INTO TB_MEMBER(
     		email, 
     		password, 
     		role, 
-    		username
+    		username,
+    		frstdt,
+    		frstid
     	) VALUES(
-    		NOW(),
     		#{email},
     		#{password},
     		'ROLE_USER',
-    		#{username}    	
+    		#{username},
+    		NOW(),
+    		NOW()    	
     	)
     	
     	

@@ -1,16 +1,35 @@
 package com.ims.usr.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-public class MemberVo {
-	String email;
-	String password;
-	String role;
-	String username;
-	Date frstdt;
-	Date frstid;
-	Date upstdt;
-	Date upstid;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class MemberVo implements UserDetails {
+	private String email;
+	private String password;
+	private List<String> roles = new ArrayList<>();
+	private String role;
+	private String username;
+	private Date frstdt;
+	private Date frstid;
+	private Date upstdt;
+	private Date upstid;
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+
+		// TODO Auto-generated method stub
+		return this.roles.stream().map(SimpleGrantedAuthority::new)
+				.collect(Collectors.toList());
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -23,12 +42,16 @@ public class MemberVo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRole() {
-		return role;
+	
+	
+	public List<String> getRoles() {
+		return roles;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -58,6 +81,38 @@ public class MemberVo {
 	}
 	public void setUpstid(Date upstid) {
 		this.upstid = upstid;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	

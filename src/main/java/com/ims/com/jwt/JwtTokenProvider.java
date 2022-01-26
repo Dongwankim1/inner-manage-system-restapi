@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.ims.usr.service.MemberService;
@@ -22,7 +24,7 @@ public class JwtTokenProvider {
 	private String secretKey = "webfirewood";
 	
 	//token persists for 1800second
-	private long tokenValidTime = 30*60*1000L;
+	private long tokenValidTime = 30*60*10L;
 	
 	@Autowired
 	private MemberService memberService;
@@ -42,8 +44,10 @@ public class JwtTokenProvider {
 	
 	//jwt select auth info
 	public Authentication getAuthentication(String token) {
-
-		return null;
+		MemberVo dumymemberVo = new MemberVo();
+		dumymemberVo.setEmail(this.getUserPk(token));
+		MemberVo memberVo = memberService.loadUserByUsername(dumymemberVo);
+		return new UsernamePasswordAuthenticationToken(memberVo,"",memberVo.getAuthorities());
 	}
 	
 	// 토큰 회원 정보 추출

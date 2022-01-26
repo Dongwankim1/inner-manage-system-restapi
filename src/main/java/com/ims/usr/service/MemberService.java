@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +45,11 @@ public class MemberService {
 		public Map<String, String> selectUserInfo(MemberVo memberVo) {
 			
 			return commondao.selectOne("MemberInfoMapper.selectUserInfo",memberVo);
+		}
+		
+		public MemberVo loadUserByUsername(MemberVo memberVo) {
+			MemberVo result = commondao.selectOneVo("MemberInfoMapper.selectOneLoadUser",memberVo);
+			result.getRoles().add(result.getRole());
+			return result;
 		}
 }

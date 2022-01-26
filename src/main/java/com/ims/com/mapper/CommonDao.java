@@ -27,4 +27,9 @@ public class CommonDao {
 	public int insert(String queryId,Object parameterObject) {
 		return sqlSession.insert(queryId,parameterObject);
 	}
+	
+	public <T> T selectOneVo(String queryId,Object parameterObject){
+		return sqlSession.selectOne(queryId,parameterObject);
+		
+	}
 }
