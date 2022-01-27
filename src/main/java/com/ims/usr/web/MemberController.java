@@ -39,7 +39,7 @@ public class MemberController {
 	}
 
 	@PostMapping("/register")
-	@ResponseBody()
+	@ResponseBody
 	public Map<String, String> createUser(@RequestBody MemberVo memberVo) {
 		
 		int result = userCustomService.createUserInfo(memberVo);
