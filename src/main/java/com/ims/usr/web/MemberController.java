@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ims.com.jwt.JwtTokenProvider;
@@ -38,6 +39,7 @@ public class MemberController {
 	}
 
 	@PostMapping("/register")
+	@ResponseBody()
 	public Map<String, String> createUser(@RequestBody MemberVo memberVo) {
 		
 		int result = userCustomService.createUserInfo(memberVo);
