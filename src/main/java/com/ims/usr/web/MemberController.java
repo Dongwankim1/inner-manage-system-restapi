@@ -42,11 +42,11 @@ public class MemberController {
 	@ResponseBody
 	public Map<String, String> createUser(@RequestBody MemberVo memberVo) {
 		
+		System.out.println("qqqqqwwwwwwwwwwwww");
 		int result = userCustomService.createUserInfo(memberVo);
 		
 		
 		Map<String,String> resultMap = new HashMap<String,String>();
-		System.out.println("qqqqqwwwwwwwwwwwww");
 		if(result ==-1) {
 			resultMap.put("code", "exist");
 			return resultMap;
