@@ -46,7 +46,7 @@ public class MemberController {
 		
 		
 		Map<String,String> resultMap = new HashMap<String,String>();
-
+		System.out.println("qqqqqwwwwwwwwwwwww");
 		if(result ==-1) {
 			resultMap.put("code", "exist");
 			return resultMap;
