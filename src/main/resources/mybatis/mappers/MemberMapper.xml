@@ -7,7 +7,7 @@
         select
             *
         from
-            TB_MEMBER
+            tb_member
         WHERE EMAIL = #{email}
     </select>
     
@@ -16,7 +16,7 @@
             email,
             role
         from
-            TB_MEMBER
+            tb_member
         WHERE EMAIL = #{email}
     </select>
     
