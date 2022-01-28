@@ -24,7 +24,7 @@ public class JwtTokenProvider {
 	private String secretKey = "webfirewood";
 	
 	//token persists for 1800second
-	private long tokenValidTime = 30*60*10L;
+	private long tokenValidTime = 30*60*1000L;
 	
 	@Autowired
 	private MemberService memberService;

@@ -7,7 +7,7 @@
         select
             *
         from
-            tb_member
+            TB_MEMBER
         WHERE EMAIL = #{email}
     </select>
     
@@ -16,12 +16,12 @@
             email,
             role
         from
-            tb_member
+            TB_MEMBER
         WHERE EMAIL = #{email}
     </select>
     
     <insert id="insertUserInfo" parameterType="com.ims.usr.vo.MemberVo" >
-    	INSERT INTO tb_member(
+    	INSERT INTO TB_MEMBER(
     		email, 
     		password, 
     		role, 
