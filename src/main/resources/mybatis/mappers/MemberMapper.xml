@@ -21,7 +21,7 @@
     </select>
     
     <insert id="insertUserInfo" parameterType="com.ims.usr.vo.MemberVo" >
-    	INSERT INTO TB_MEMBER(
+    	INSERT INTO tb_member(
     		email, 
     		password, 
     		role, 
