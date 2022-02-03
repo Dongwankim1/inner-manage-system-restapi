@@ -1,6 +1,5 @@
 spring:
   profiles:
-    default: local
     active: @spring.profiles.active@
 
 ---
