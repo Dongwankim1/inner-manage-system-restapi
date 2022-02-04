@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.JsonObject;
 import com.ims.com.jwt.JwtTokenProvider;
 import com.ims.usr.service.MemberService;
 
@@ -42,7 +43,7 @@ public class MemberController {
 	@ResponseBody
 	public Map<String, String> createUser(@RequestBody MemberVo memberVo) {
 		
-		System.out.println("qqqqqwwwwwwwwwwwww");
+
 		int result = userCustomService.createUserInfo(memberVo);
 		
 		
@@ -62,16 +63,21 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(@RequestBody MemberVo memberVo) {
 		Map<String,String> user = userCustomService.selectUserInfo(memberVo);
+		JsonObject obj = new JsonObject();
 		
 		if(user ==null) {
-			return "가입되지 않은 EMAIL 입니다.";
+			obj.addProperty("code", "none");
+			return obj.toString();
 		}
 		
 		if(!bCryptPasswordEncoder.matches(memberVo.getPassword(), user.get("password"))) {
-			return "잘못된 비밀번호입니다.";
+			obj.addProperty("code", "diff");
+			return obj.toString();
 		}
+		obj.addProperty("code", "success");
+		obj.addProperty("token", jwtTokenProvider.createToken(user.get("email"), user.get("role")));
 		
-		return jwtTokenProvider.createToken(user.get("email"), user.get("role"));
+		return obj.toString();
 		
 		
 	}
