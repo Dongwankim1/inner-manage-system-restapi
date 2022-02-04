@@ -2,6 +2,7 @@ spring:
   profiles:
     active: @spring.profiles.active@
 
+
 ---
 
 
@@ -13,12 +14,14 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    username: ims
-    password: ims12!@
+    username: ENC(wOYsg6nt2coPPTcmdefplQ==)
+    password: ENC(TIvG3zr/qVon3huDMl4fvw==)
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://192.168.0.17:3309/ims?serverTimezone=UTC&allowPublicKeyRetrieval=true
+    jdbc-url: jdbc:mysql://192.168.0.17/ims?serverTimezone=UTC&allowPublicKeyRetrieval=true
 
-
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
 
 ---
 server:
@@ -29,9 +32,11 @@ spring:
     activate:
       on-profile: local
   datasource:
-    username: ims
-    password: ims12!@
+    username: ENC(wOYsg6nt2coPPTcmdefplQ==)
+    password: ENC(TIvG3zr/qVon3huDMl4fvw==)
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://localhost:3306/ims?serverTimezone=UTC&allowPublicKeyRetrieval=true
 
-  
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
